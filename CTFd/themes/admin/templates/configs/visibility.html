@@ -4,7 +4,10 @@
 			challenge_visibility=challenge_visibility, 
 			account_visibility=account_visibility, 
 			score_visibility=score_visibility, 
-			registration_visibility=registration_visibility
+			registration_visibility=registration_visibility,
+			ctfd_footer_visibility=ctfd_footer_visibility,
+			flag_tab_visibility=flag_tab_visibility,
+			explanation_tab_visibility=explanation_tab_visibility,
 		) 
 	%}
 	<form method="POST" autocomplete="off" class="w-100">
@@ -42,6 +45,30 @@
 			{{ form.registration_visibility(class="form-control custom-select") }}
 			<small class="form-text text-muted">
 				{{ form.registration_visibility.description }}
+			</small>
+		</div>
+
+		<div class="form-group">
+			{{ form.ctfd_footer_visibility.label }}
+			{{ form.ctfd_footer_visibility(class="form-control custom-select") }}
+			<small class="form-text text-muted">
+				{{ form.ctfd_footer_visibility.description }}
+			</small>
+		</div>
+
+		<div class="form-group">
+			{{ form.flag_tab_visibility.label }}
+			{{ form.flag_tab_visibility(class="form-control custom-select") }}
+			<small class="form-text text-muted">
+				{{ form.flag_tab_visibility.description }}
+			</small>
+		</div>
+
+		<div class="form-group">
+			{{ form.explanation_tab_visibility.label }}
+			{{ form.explanation_tab_visibility(class="form-control custom-select") }}
+			<small class="form-text text-muted">
+				{{ form.explanation_tab_visibility.description }}
 			</small>
 		</div>
 

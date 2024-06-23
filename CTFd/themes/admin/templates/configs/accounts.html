@@ -1,9 +1,10 @@
 <div role="tabpanel" class="tab-pane config-section" id="accounts">
 
 	{% set verify_emails = "true" if verify_emails == True else "false" %}
+	{% set empty_email_allowed = "true" if empty_email_allowed == True else "false" %}
 	{% set name_changes = "true" if name_changes == True else "false" %}
 	{% set team_creation = "false" if team_creation == False else "true" %}
-	{% with form = Forms.config.AccountSettingsForm(verify_emails=verify_emails, name_changes=name_changes, team_disbanding=team_disbanding, team_creation=team_creation) %}
+	{% with form = Forms.config.AccountSettingsForm(verify_emails=verify_emails, empty_email_allowed=empty_email_allowed, set_reset_password_message=set_reset_password_message, reset_password_message=reset_password_message, name_changes=name_changes, team_disbanding=team_disbanding, team_creation=team_creation) %}
 	<form method="POST" autocomplete="off" class="w-100">
 		<ul class="nav nav-tabs mb-3">
 			<li class="nav-item">
@@ -36,7 +37,31 @@
 							{{ form.verify_emails.description }}
 						</small>
 					</div>
-			
+
+					<div class="form-group">
+						{{ form.empty_email_allowed.label }}
+						{{ form.empty_email_allowed(class="form-control custom-select") }}
+						<small class="form-text text-muted">
+							{{ form.empty_email_allowed.description }}
+						</small>
+					</div>
+
+					<div class="form-group">
+						{{ form.set_reset_password_message.label }}
+						{{ form.set_reset_password_message(class="form-control custom-select") }}
+						<small class="form-text text-muted">
+							{{ form.set_reset_password_message.description }}
+						</small>
+					</div>
+
+					<div class="form-group">
+						{{ form.reset_password_message.label }}
+						<small class="form-text text-muted">
+							{{ form.reset_password_message.description }}
+						</small>
+						{{ form.reset_password_message(class="form-control markdown", rows=6) }}
+					</div>
+
 					<div class="form-group">
 						{{ form.num_users.label }}
 						{{ form.num_users(class="form-control", value=num_users) }}

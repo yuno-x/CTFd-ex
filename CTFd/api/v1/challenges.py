@@ -30,6 +30,8 @@ from CTFd.utils.config.visibility import (
     accounts_visible,
     challenges_visible,
     scores_visible,
+    flag_tab_visible,
+    explanation_tab_visible,
 )
 from CTFd.utils.dates import ctf_ended, ctf_paused, ctftime
 from CTFd.utils.decorators import (
@@ -408,6 +410,11 @@ class Challenge(Resource):
         else:
             solve_count, solved_by_user = 0, False
 
+        solved_by_me_abs = chal.id in user_solves
+        flags = []
+        if flag_tab_visible( solved_by_me_abs ):
+            flags = Flags.query.filter_by(challenge_id=challenge_id)
+
         # Hide solve counts if we are hiding solves/accounts
         if scores_visible() is False or accounts_visible() is False:
             solve_count = None
@@ -431,6 +438,9 @@ class Challenge(Resource):
             chal_class.templates["view"].lstrip("/"),
             solves=solve_count,
             solved_by_me=solved_by_user,
+            visible_flag_tab=flag_tab_visible(solved_by_me_abs),
+            visible_explanation_tab=explanation_tab_visible(solved_by_me_abs),
+            flags=flags,
             files=files,
             tags=tags,
             hints=[Hints(**h) for h in hints],

@@ -11,6 +11,9 @@ class ConfigTypes(str, RawEnum):
     SCORE_VISIBILITY = "score_visibility"
     ACCOUNT_VISIBILITY = "account_visibility"
     REGISTRATION_VISIBILITY = "registration_visibility"
+    CTFD_FOOTER_VISIBILITY = "ctfd_footer_visibility"
+    FLAG_TAB_VISIBILITY = "flag_tab_visibility"
+    EXPLANATION_TAB_VISIBILITY = "explanation_tab_visibility"
 
 
 @JinjaEnum
@@ -47,6 +50,26 @@ class RegistrationVisibilityTypes(str, RawEnum):
     PRIVATE = "private"
     MLC = "mlc"
 
+@JinjaEnum
+class CTFdFooterVisibilityTypes(str, RawEnum):
+    SHOWN = "shown"
+    HIDDEN = "hidden"
+
+@JinjaEnum
+class FlagTabVisibilityTypes(str, RawEnum):
+    SHOWN = "shown"
+    SOLVED = "solved"
+    SOLVED_OR_ADMINS = "solved_or_admins"
+    ADMINS = "admins"
+    HIDDEN = "hidden"
+
+@JinjaEnum
+class ExplanationTabVisibilityTypes(str, RawEnum):
+    SHOWN = "shown"
+    SOLVED = "solved"
+    SOLVED_OR_ADMINS = "solved_or_admins"
+    ADMINS = "admins"
+    HIDDEN = "hidden"
 
 class _ConfigsWrapper:
     def __getattr__(self, attr):

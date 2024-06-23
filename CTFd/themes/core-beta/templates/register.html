@@ -38,7 +38,12 @@
 
             <div class="mb-3">
               <b>{{ form.email.label(class="form-label") }}</b>
+              {% if get_config("empty_email_allowed") %}
+              <small class="float-right text-muted align-text-bottom">Optional</small>
               {{ form.email(class="form-control", value=email) }}
+              {% else %}
+              {{ form.email(class="form-control", value=email, required=True) }}
+              {% endif %}
               <small class="form-text text-muted">
                 {% trans %}Never shown to the public{% endtrans %}
               </small>

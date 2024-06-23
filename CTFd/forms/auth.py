@@ -20,7 +20,7 @@ def RegistrationForm(*args, **kwargs):
         name = StringField(
             _l("User Name"), validators=[InputRequired()], render_kw={"autofocus": True}
         )
-        email = EmailField(_l("Email"), validators=[InputRequired()])
+        email = EmailField(_l("Email"))
         password = PasswordField(_l("Password"), validators=[InputRequired()])
         submit = SubmitField(_l("Submit"))
 

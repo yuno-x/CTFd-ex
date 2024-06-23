@@ -17,7 +17,7 @@
 					Description of your CTF. Available for use on your custom pages and emails as <code>{ctf_description}</code>.
 				</small>
 			</label>
-			<textarea class="form-control" type="text" id="ctf_description" name="ctf_description" rows="5">{{ ctf_description }}</textarea>
+			<textarea class="form-control" type="text" id="ctf_description" name="ctf_description" rows="5">{{ ctf_description or "" }}</textarea>
 		</div>
 
 		<button type="submit" class="btn btn-md btn-primary float-right">Update</button>

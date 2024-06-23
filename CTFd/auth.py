@@ -12,6 +12,7 @@ from CTFd.utils import config, email, get_app_config, get_config
 from CTFd.utils import user as current_user
 from CTFd.utils import validators
 from CTFd.utils.config import is_teams_mode
+from CTFd.utils.config.pages import build_markdown
 from CTFd.utils.config.integrations import mlc_registration
 from CTFd.utils.config.visibility import registration_visible
 from CTFd.utils.crypto import verify_password
@@ -103,6 +104,7 @@ def reset_password(data=None):
                     "This CTF is not configured to send email.<br> Please contact an organizer to have your password reset."
                 )
             ],
+            message=build_markdown(get_config("reset_password_message") or ""),
         )
 
     if data is not None:
@@ -216,10 +218,15 @@ def register():
             Users.query.add_columns(Users.email, Users.id)
             .filter_by(email=email_address)
             .first()
+            if email_address else None
         )
         pass_short = len(password) == 0
         pass_long = len(password) > 128
-        valid_email = validators.validate_email(email_address)
+        valid_email = (
+            validators.validate_email(email_address)
+            if not get_config("empty_email_allowd") or email_address
+            else True
+        )
         team_name_email_check = validators.validate_email(name)
 
         if get_config("registration_code"):
@@ -310,6 +317,8 @@ def register():
             )
         else:
             with app.app_context():
+                if not email_address:
+                    email_address = None
                 user = Users(
                     name=name,
                     email=email_address,

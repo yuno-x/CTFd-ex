@@ -177,7 +177,7 @@ class PublicUserSearchForm(BaseForm):
 
 class UserBaseForm(BaseForm):
     name = StringField("User Name", validators=[InputRequired()])
-    email = EmailField("Email", validators=[InputRequired()])
+    email = EmailField("Email")
     language = SelectField(_l("Language"), choices=SELECT_LANGUAGE_LIST)
     password = PasswordField("Password")
     website = StringField("Website")

@@ -4,6 +4,9 @@ from CTFd.constants.config import (
     ConfigTypes,
     RegistrationVisibilityTypes,
     ScoreVisibilityTypes,
+    CTFdFooterVisibilityTypes,
+    FlagTabVisibilityTypes,
+    ExplanationTabVisibilityTypes,
 )
 from CTFd.utils import get_config
 from CTFd.utils.user import authed, is_admin
@@ -48,4 +51,39 @@ def registration_visible():
     elif v == RegistrationVisibilityTypes.PRIVATE:
         return False
     else:
+        return False
+
+def ctfd_footer_visible():
+    v = get_config(ConfigTypes.CTFD_FOOTER_VISIBILITY)
+    if v == CTFdFooterVisibilityTypes.SHOWN:
+        return True
+    elif v == CTFdFooterVisibilityTypes.HIDDEN:
+        return False
+    else:
+        return False
+
+def flag_tab_visible( solved_by_me ):
+    v = get_config(ConfigTypes.FLAG_TAB_VISIBILITY)
+    if v == FlagTabVisibilityTypes.SHOWN:
+        return True
+    elif v == FlagTabVisibilityTypes.SOLVED:
+        return solved_by_me
+    elif v == FlagTabVisibilityTypes.SOLVED_OR_ADMINS:
+        return solved_by_me or is_admin()
+    elif v == FlagTabVisibilityTypes.ADMINS:
+        return is_admin()
+    elif v == FlagTabVisibilityTypes.HIDDEN:
+        return False
+
+def explanation_tab_visible( solved_by_me ):
+    v = get_config(ConfigTypes.EXPLANATION_TAB_VISIBILITY)
+    if v == ExplanationTabVisibilityTypes.SHOWN:
+        return True
+    elif v == ExplanationTabVisibilityTypes.SOLVED:
+        return solved_by_me
+    elif v == ExplanationTabVisibilityTypes.SOLVED_OR_ADMINS:
+        return solved_by_me or is_admin()
+    elif v == ExplanationTabVisibilityTypes.ADMINS:
+        return is_admin()
+    elif v == ExplanationTabVisibilityTypes.HIDDEN:
         return False

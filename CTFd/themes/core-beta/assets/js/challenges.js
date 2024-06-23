@@ -112,6 +112,14 @@ Alpine.data("Challenge", () => ({
     new Tab(this.$el).show();
   },
 
+  async showFlag() {
+    new Tab(this.$el).show();
+  },
+
+  async showExplain() {
+    new Tab(this.$el).show();
+  },
+
   getNextId() {
     let data = Alpine.store("challenge").data;
     return data.next_id;

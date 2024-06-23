@@ -17,6 +17,18 @@
 						</a>
 					</li>
 				{% endblock %}
+
+				{% if visible_flag_tab %}
+				<li class="nav-item">
+					<a class="nav-link challenge-flag" href="#flag">Flag</a>
+				</li>
+				{% endif %}
+
+				{% if visible_explanation_tab %}
+				<li class="nav-item">
+					<a class="nav-link challenge-explain" href="#explain">Explain</a>
+				</li>
+				{% endif %}
 			</ul>
 			<div role="tabpanel">
 				<div class="tab-content">
@@ -149,6 +161,37 @@
 							</div>
 						</div>
 					</div>
+
+					{% if visible_flag_tab %}
+					<div role="tabpanel" class="tab-pane fade" id="flag">
+						<div class="row">
+							<div class="col-md-12">
+								<table class="table table-striped text-center">
+									<thead>
+									<tr>
+										<td><b>Flag</b>
+										</td>
+									</tr>
+									</thead>
+									<tbody>
+									{% for flag in flags %}
+									<tr>
+										<td>{{ flag.content }}
+										</td>
+									</tr>
+									{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					{% endif %}
+
+					{% if visible_explanation_tab %}
+					<div role="tabpanel" class="tab-pane fade" id="explain">
+						<span class="challenge-exp">{{ challenge.ehtml }}</span>
+					</div>
+					{% endif %}
 				</div>
 			</div>
 		</div>

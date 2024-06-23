@@ -177,6 +177,30 @@
 								</b>
 								{{ form.registration_visibility(class="form-control custom-select") }}
 							</div>
+
+							<div class="col-md-3 mb-3">
+								<b>
+									{{ form.ctfd_footer_visibility.label }}
+									<i class="far fa-question float-end text-muted" data-bs-toggle="tooltip" data-bs-title="{{ form.ctfd_footer_visibility.description }}"></i>
+								</b>
+								{{ form.ctfd_footer_visibility(class="form-control custom-select") }}
+							</div>
+
+							<div class="col-md-3 mb-3">
+								<b>
+									{{ form.flag_tab_visibility.label }}
+									<i class="far fa-question float-end text-muted" data-bs-toggle="tooltip" data-bs-title="{{ form.flag_tab_visibility.description }}"></i>
+								</b>
+								{{ form.flag_tab_visibility(class="form-control custom-select") }}
+							</div>
+
+							<div class="col-md-3 mb-3">
+								<b>
+									{{ form.explanation_tab_visibility.label }}
+									<i class="far fa-question float-end text-muted" data-bs-toggle="tooltip" data-bs-title="{{ form.explanation_tab_visibility.description }}"></i>
+								</b>
+								{{ form.explanation_tab_visibility(class="form-control custom-select") }}
+							</div>
 						</div>
 
 						<hr>
@@ -187,6 +211,30 @@
 							<small class="form-text text-muted">
 								{{ form.verify_emails.description }}
 							</small>
+						</div>
+
+						<div class="mb-3">
+							<b>{{ form.empty_email_allowed.label }}</b>
+							{{ form.empty_email_allowed(class="form-control custom-select") }}
+							<small class="form-text text-muted">
+								{{ form.empty_email_allowed.description }}
+							</small>
+						</div>
+
+						<div class="mb-3">
+							<b>{{ form.set_reset_password_message.label }}</b>
+							{{ form.set_reset_password_message(class="form-control custom-select") }}
+							<small class="form-text text-muted">
+								{{ form.set_reset_password_message.description }}
+							</small>
+						</div>
+
+						<div class="mb-3">
+							<b>{{ form.reset_password_message.label }}</b>
+							<small class="form-text text-muted">
+								{{ form.reset_password_message.description }}
+							</small>
+							{{ form.reset_password_message(class="form-control markdown", rows=6) }}
 						</div>
 
 						<div class="mb-3">

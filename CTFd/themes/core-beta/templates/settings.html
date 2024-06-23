@@ -48,7 +48,7 @@
 
                 <div class="mb-3">
                   <b>{{ form.email.label(class="form-label") }}</b>
-                  {{ form.email(class="form-control", value=email) }}
+                  {{ form.email(class="form-control", value=email or "") }}
                 </div>
 
                 <div class="mb-3">

@@ -34,6 +34,18 @@
 	</div>
 	{% endblock %}
 
+	{% block explanation %}
+	<div class="form-group">
+		<label>
+			Explanation<br>
+			<small class="form-text text-muted">
+				Use this to give a explanation to your challenge.
+			</small>
+		</label>
+		<textarea id="desc-editor" class="form-control chal-desc-editor markdown" name="explanation" rows="10">{{ challenge.explanation | default('', true) }}</textarea>
+	</div>
+	{% endblock %}
+
 	{% block connection_info %}
 	<div class="form-group">
 		<label>

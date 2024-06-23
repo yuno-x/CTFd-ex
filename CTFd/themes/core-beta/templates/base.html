@@ -44,6 +44,7 @@
   {% endblock %}
 </main>
 
+{% if ctfd_footer_visible() %}
 <footer class="footer">
   <div class="container text-center">
     <a href="https://ctfd.io" class="text-secondary">
@@ -53,6 +54,7 @@
     </a>
   </div>
 </footer>
+{% endif %}
 
 {% include "components/notifications.html" %}
 

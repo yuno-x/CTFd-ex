@@ -21,6 +21,22 @@
               </button>
             </li>
           {% endblock %}
+
+          {% if visible_flag_tab %}
+            <li class="nav-item">
+              <button class="nav-link challenge-flag" data-bs-target="#flag" @click="showFlag()">
+                Flag
+              </button>
+            </li>
+          {% endif %}
+
+          {% if visible_explanation_tab %}
+            <li class="nav-item">
+              <button class="nav-link challenge-explain" data-bs-target="#explain" @click="showExplain()">
+                Explain
+              </button>
+            </li>
+          {% endif %}
         </ul>
       </div>
 
@@ -224,6 +240,37 @@
               </div>
             </div>
           </div>
+
+          {% if visible_flag_tab %}
+          <div role="tabpanel" class="tab-pane fade" id="flag">
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table table-striped text-center">
+                  <thead>
+                  <tr>
+                    <td><b>Flag</b>
+                    </td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for flag in flags %}
+                  <tr>
+                    <td>{{ flag.content }}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          {% if visible_explanation_tab %}
+          <div role="tabpanel" class="tab-pane fade" id="explain">
+	    <span class="challenge-exp">{{ challenge.ehtml }}</span>
+          </div>
+          {% endif %}
         </div>
       </div>
     </div>

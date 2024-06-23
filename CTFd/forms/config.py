@@ -7,6 +7,9 @@ from CTFd.constants.config import (
     ChallengeVisibilityTypes,
     RegistrationVisibilityTypes,
     ScoreVisibilityTypes,
+    CTFdFooterVisibilityTypes,
+    FlagTabVisibilityTypes,
+    ExplanationTabVisibilityTypes,
 )
 from CTFd.forms import BaseForm
 from CTFd.forms.fields import SubmitField
@@ -64,6 +67,22 @@ class AccountSettingsForm(BaseForm):
         description="Control whether users must confirm their email addresses before playing",
         choices=[("true", "Enabled"), ("false", "Disabled")],
         default="false",
+    )
+    empty_email_allowed = SelectField(
+        "Allow Empty Emails",
+        description="Control whether users can set their addresses empty before participating",
+        choices=[("true", "Enabled"), ("false", "Disabled")],
+        default="false",
+    )
+    set_reset_password_message = SelectField(
+        "Set Reset-Password Message",
+        description="Add or replace message of reset-password page with following the custom message",
+        choices=[("add", "Add"), ("replace", "Replace"), ("disabled", "Disabled")],
+        default="disabled",
+    )
+    reset_password_message = TextAreaField(
+        "Reset Password Message",
+        description="Text shown on the Reset-Password page according to the choice on previous setting",
     )
     team_disbanding = SelectField(
         "Team Disbanding",
@@ -174,4 +193,37 @@ class VisibilitySettingsForm(BaseForm):
             (RegistrationVisibilityTypes.MLC, "MajorLeagueCyber Only"),
         ],
         default=RegistrationVisibilityTypes.PUBLIC,
+    )
+    ctfd_footer_visibility = SelectField(
+        "CTFd Footer Visibility",
+        description="Control whether CTFd footer in each page is shown",
+        choices=[
+            (CTFdFooterVisibilityTypes.SHOWN, "Shown"),
+            (CTFdFooterVisibilityTypes.HIDDEN, "Hidden"),
+        ],
+        default=CTFdFooterVisibilityTypes.SHOWN,
+    )
+    flag_tab_visibility = SelectField(
+        "Flag Tab Visibility",
+        description="Control whether the flag tab in each challenge is shown",
+        choices=[
+            (FlagTabVisibilityTypes.SHOWN, "Shown"),
+            (FlagTabVisibilityTypes.SOLVED, "Solved Only"),
+            (FlagTabVisibilityTypes.SOLVED_OR_ADMINS, "Solved or Admins Only"),
+            (FlagTabVisibilityTypes.ADMINS, "Admins Only"),
+            (FlagTabVisibilityTypes.HIDDEN, "Hidden"),
+        ],
+        default=FlagTabVisibilityTypes.HIDDEN,
+    )
+    explanation_tab_visibility = SelectField(
+        "Explanation Tab Visibility",
+        description="Control whether the explanation tab in each challenge is shown",
+        choices=[
+            (ExplanationTabVisibilityTypes.SHOWN, "Shown"),
+            (ExplanationTabVisibilityTypes.SOLVED, "Solved Only"),
+            (ExplanationTabVisibilityTypes.SOLVED_OR_ADMINS, "Solved or Admins Only"),
+            (ExplanationTabVisibilityTypes.ADMINS, "Admins Only"),
+            (ExplanationTabVisibilityTypes.HIDDEN, "Hidden"),
+        ],
+        default=ExplanationTabVisibilityTypes.HIDDEN,
     )

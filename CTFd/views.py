@@ -22,6 +22,9 @@ from CTFd.constants.config import (
     ConfigTypes,
     RegistrationVisibilityTypes,
     ScoreVisibilityTypes,
+    CTFdFooterVisibilityTypes,
+    FlagTabVisibilityTypes,
+    ExplanationTabVisibilityTypes,
 )
 from CTFd.constants.themes import DEFAULT_THEME
 from CTFd.models import (
@@ -107,7 +110,25 @@ def setup():
                     default=RegistrationVisibilityTypes.PUBLIC,
                 )
             )
+            ctfd_footer_visibility = CTFdFooterVisibilityTypes(
+                request.form.get(
+                    "ctfd_footer_visibility", default=CTFdFooterVisibilityTypes.SHOWN,
+                )
+            )
+            flag_tab_visibility = FlagTabVisibilityTypes(
+                request.form.get(
+                    "flag_tab_visibility", default=FlagTabVisibilityTypes.HIDDEN
+                )
+            )
+            explanation_tab_visibility = ExplanationTabVisibilityTypes(
+                request.form.get(
+                    "explanation_tab_visibility", default=ExplanationTabVisibilityTypes.HIDDEN
+                )
+            )
             verify_emails = request.form.get("verify_emails")
+            empty_email_allowed = request.form.get("empty_email_allowed")
+            set_reset_password_message = request.form.get("set_reset_password_message")
+            reset_password_message = request.form.get("reset_password_message")
             team_size = request.form.get("team_size")
 
             # Style
@@ -228,9 +249,16 @@ def setup():
             set_config(ConfigTypes.REGISTRATION_VISIBILITY, registration_visibility)
             set_config(ConfigTypes.SCORE_VISIBILITY, score_visibility)
             set_config(ConfigTypes.ACCOUNT_VISIBILITY, account_visibility)
+            set_config(ConfigTypes.CTFD_FOOTER_VISIBILITY, ctfd_footer_visibility)
+            set_config(ConfigTypes.FLAG_TAB_VISIBILITY, flag_tab_visibility)
+            set_config(ConfigTypes.EXPLANATION_TAB_VISIBILITY, explanation_tab_visibility)
 
             # Verify emails
             set_config("verify_emails", verify_emails)
+
+            set_config("empty_email_allowed", empty_email_allowed)
+            set_config("set_reset_password_message", set_reset_password_message)
+            set_config("reset_password_message", reset_password_message)
 
             # Team Size
             set_config("team_size", team_size)
