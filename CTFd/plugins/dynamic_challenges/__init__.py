@@ -75,6 +75,7 @@ class DynamicValueChallenge(BaseChallenge):
             "minimum": challenge.minimum,
             "function": challenge.function,
             "description": challenge.description,
+            "explanation": challenge.explanation,
             "connection_info": challenge.connection_info,
             "next_id": challenge.next_id,
             "category": challenge.category,
